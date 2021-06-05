@@ -1,0 +1,5 @@
+name: First Plugin
+version: 1.0.0
+author: Erik444_
+description: Solo una prueba.
+main: me.erik444.firstplugin.FirstPlugin

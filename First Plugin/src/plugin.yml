@@ -1,0 +1,10 @@
+name: First_Plugin
+version: 1.0.0
+author: Erik444_
+description: Solo una prueba.
+main: me.erik444.firstplugin.FirstPlugin
+commands:
+  youtube:
+    description: muestra el canal en el chat del usuario.
+  miplugin:
+    description: comando que muestra la info del plugin.
