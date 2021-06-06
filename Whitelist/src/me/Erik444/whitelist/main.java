@@ -36,8 +36,10 @@ public class main extends JavaPlugin {
         String command = "/minecraft:whitelist off";
         Bukkit.getServer().dispatchCommand(console, "minecraft:whitelist off");
         Bukkit.getServer().dispatchCommand(console, command);
+        Bukkit.dispatchCommand(console,"minecraft:whitelist off");
         getLogger().info(name + " Inicializado correctamente. Version actual: "+ version);
-        getLogger().info(name + ChatColor.BLUE+"---------------"+ChatColor.GOLD+" Whitelist "+ChatColor.BLUE+"---------------\n\n \u0009 \u0009 \u0009 \u0009 WHITELIST ACTIVADA \n\n");
+        getLogger().info(name + ChatColor.BLUE+"---------------"+ChatColor.GOLD+" Whitelist "+ChatColor.BLUE+"---------------");
+        getLogger().info(name+ "　　　　　WHITELIST ACTIVADA ");
         getLogger().info(name + ChatColor.BLUE+"---------------"+ChatColor.GOLD+" Whitelist Version:"+version+ChatColor.BLUE+"---------------");
 
         registerWhitelist();
@@ -56,7 +58,8 @@ public class main extends JavaPlugin {
     @Override
     public void onDisable() {
         getLogger().warning(name + "Desactivado.");
-        getLogger().info(name + ChatColor.BLUE+"---------------"+ChatColor.GOLD+" Whitelist "+ChatColor.BLUE+"---------------\n \n　　　　　WHITELIST DESACTIVADA \n\n");
+        getLogger().info(name + ChatColor.BLUE+"---------------"+ChatColor.GOLD+" Whitelist "+ChatColor.BLUE+"---------------");
+        getLogger().info(name+ "　　　　　WHITELIST DESACTIVADA ");
         getLogger().info(name + ChatColor.BLUE+"---------------"+ChatColor.GOLD+" Whitelist Version:"+version+ChatColor.BLUE+"---------------");
 
     }
