@@ -75,6 +75,29 @@ public class loginv1 extends JavaPlugin {
         pm.registerEvents(new CheckSiEstaLogeado(this),this);
     }
 
+
+    //login users
+    private List<String> usersLogeados =new ArrayList<>();
+
+    public List<String> getUsersLogeados() {
+        if(usersLogeados == null){
+            usersLogeados.add("1351312asdfcvzxcq3123");
+            System.out.println("Era null");
+        }
+        return usersLogeados;
+    }
+
+    public void addUsersLogeados(String user) {
+        this.usersLogeados.add(user);
+    }
+    public void delUsersLogeados(String user) {
+        for (int i = 0; i < this.usersLogeados.size(); i++) {
+            if(this.usersLogeados.get(i).equals(user)){
+                this.usersLogeados.remove(i);
+            }
+        }
+    }
+
     public void registrarConfig(){
         File config = new File(this.getDataFolder(),"users.yml");
         rutaConfig = config.getPath();

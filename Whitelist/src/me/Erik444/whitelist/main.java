@@ -29,11 +29,13 @@ public class main extends JavaPlugin {
     public String name = ChatColor.BLUE+"["+ ChatColor.YELLOW+ pluginyml.getName() +ChatColor.BLUE+"]"+ChatColor.WHITE;
     public String version =   ChatColor.BLUE+"["+ChatColor.RED+ pluginyml.getVersion() +ChatColor.BLUE+"]"+ChatColor.WHITE;
 
+
     @Override
     public void onEnable() {
         ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
         String command = "/minecraft:whitelist off";
         Bukkit.getServer().dispatchCommand(console, "minecraft:whitelist off");
+        Bukkit.getServer().dispatchCommand(console, command);
         getLogger().info(name + " Inicializado correctamente. Version actual: "+ version);
         getLogger().info(name + ChatColor.BLUE+"---------------"+ChatColor.GOLD+" Whitelist "+ChatColor.BLUE+"---------------\n\n \u0009 \u0009 \u0009 \u0009 WHITELIST ACTIVADA \n\n");
         getLogger().info(name + ChatColor.BLUE+"---------------"+ChatColor.GOLD+" Whitelist Version:"+version+ChatColor.BLUE+"---------------");

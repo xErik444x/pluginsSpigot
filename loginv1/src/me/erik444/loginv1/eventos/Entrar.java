@@ -24,14 +24,18 @@ public class Entrar implements Listener {
 
     @EventHandler
     public void alSalir(PlayerQuitEvent event){
-        plugin.reloadUsers();
-        FileConfiguration users = plugin.getUsers();
-        Player jugador = event.getPlayer();
-        Boolean logeado = users.getBoolean("usuarios."+jugador.getName()+".logeado");
-        if(logeado){
-            users.set("usuarios."+jugador.getName()+".logeado",false);
-            plugin.saveUsers();
+        if( plugin.getUsersLogeados().contains(event.getPlayer().getName())){
+            plugin.delUsersLogeados(event.getPlayer().getName());
+            plugin.reloadUsers();
+            FileConfiguration users = plugin.getUsers();
+            Player jugador = event.getPlayer();
+            Boolean logeado = users.getBoolean("usuarios."+jugador.getName()+".logeado");
+            if(logeado){
+                users.set("usuarios."+jugador.getName()+".logeado",false);
+                plugin.saveUsers();
+            }
         }
+
     }
 
     @EventHandler
@@ -63,6 +67,7 @@ public class Entrar implements Listener {
                         jugador.setAllowFlight(false);
                     }
                     jugador.sendMessage(ChatColor.RED + "AUTOLOGEADO, NO HACE FALTA QUE PONGAS TU CONTRASEÑA.");
+                    plugin.addUsersLogeados(jugador.getName());
                 }else{
                     Bukkit.getConsoleSender().sendMessage(plugin.nombre+  ChatColor.RED +" ALERTA "+ jugador.getName() +" Entró con otra ip: "+ jugador.getAddress().getAddress().toString());
                 }
@@ -79,7 +84,11 @@ public class Entrar implements Listener {
 
     @EventHandler
     public void ponerPass(AsyncPlayerChatEvent event){
+
         try {
+            if( plugin.getUsersLogeados().contains(event.getPlayer().getName())){
+                return;
+            }
             //Bukkit.getConsoleSender().sendMessage("ejecutao");
             FileConfiguration users = plugin.getUsers();
             //Bukkit.getConsoleSender().sendMessage("84");
@@ -113,6 +122,7 @@ public class Entrar implements Listener {
                             users.set("usuarios."+jugador.getName()+".logeado",true);
                             users.set("usuarios."+jugador.getName()+".ip",jugador.getAddress().getAddress().toString());
                             plugin.saveUsers();
+                            plugin.addUsersLogeados(jugador.getName());
 
                         }else{
                             //Bukkit.getConsoleSender().sendMessage("114");

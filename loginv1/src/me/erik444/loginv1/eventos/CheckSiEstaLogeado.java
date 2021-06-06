@@ -24,6 +24,9 @@ public class CheckSiEstaLogeado implements Listener {
     }
     @EventHandler
     public void caminar(PlayerMoveEvent event){
+        if(plugin.getUsersLogeados().contains(event.getPlayer().getName())){
+            return;
+        }
         FileConfiguration users = plugin.getUsers();
         Player jugador = event.getPlayer();
         Boolean logeado = users.getBoolean("usuarios."+jugador.getName()+".logeado");
@@ -35,6 +38,9 @@ public class CheckSiEstaLogeado implements Listener {
     }
     @EventHandler
     public void dormir(PlayerBedEnterEvent event){
+        if(plugin.getUsersLogeados().contains(event.getPlayer().getName())){
+            return;
+        }
         FileConfiguration users = plugin.getUsers();
         Player jugador = event.getPlayer();
         Boolean logeado = users.getBoolean("usuarios."+jugador.getName()+".logeado");
@@ -46,6 +52,9 @@ public class CheckSiEstaLogeado implements Listener {
     }
     @EventHandler
     public void comandos(PlayerCommandPreprocessEvent event){
+        if(plugin.getUsersLogeados().contains(event.getPlayer().getName())){
+            return;
+        }
         FileConfiguration users = plugin.getUsers();
         Player jugador = event.getPlayer();
         Boolean logeado = users.getBoolean("usuarios."+jugador.getName()+".logeado");
@@ -57,6 +66,9 @@ public class CheckSiEstaLogeado implements Listener {
     }
     @EventHandler
     public void interactuar(PlayerInteractEvent event){
+        if(plugin.getUsersLogeados().contains(event.getPlayer().getName())){
+            return;
+        }
         FileConfiguration users = plugin.getUsers();
         Player jugador = event.getPlayer();
         Boolean logeado = users.getBoolean("usuarios."+jugador.getName()+".logeado");
@@ -68,6 +80,9 @@ public class CheckSiEstaLogeado implements Listener {
     }
     @EventHandler
     public void inventoryopen(InventoryOpenEvent event){
+        if(plugin.getUsersLogeados().contains(event.getPlayer().getName())){
+            return;
+        }
         FileConfiguration users = plugin.getUsers();
         Player jugador = (Player) event.getPlayer();
         Boolean logeado = users.getBoolean("usuarios."+jugador.getName()+".logeado");
@@ -80,8 +95,12 @@ public class CheckSiEstaLogeado implements Listener {
 
     @EventHandler
     public void inventoryclick(InventoryClickEvent event){
-        FileConfiguration users = plugin.getUsers();
         Player jugador = (Player) event.getWhoClicked();
+        if(plugin.getUsersLogeados().contains(jugador.getName())){
+            return;
+        }
+        FileConfiguration users = plugin.getUsers();
+
         Boolean logeado = users.getBoolean("usuarios."+jugador.getName()+".logeado");
         if(!logeado){
             event.setCancelled(true);
@@ -91,6 +110,9 @@ public class CheckSiEstaLogeado implements Listener {
 
     @EventHandler
     public void drop(PlayerDropItemEvent  event){
+        if(plugin.getUsersLogeados().contains(event.getPlayer().getName())){
+            return;
+        }
         FileConfiguration users = plugin.getUsers();
         Player jugador = event.getPlayer();
         Boolean logeado = users.getBoolean("usuarios."+jugador.getName()+".logeado");
@@ -101,9 +123,14 @@ public class CheckSiEstaLogeado implements Listener {
     }
     @EventHandler
     public void pick(EntityPickupItemEvent event){
+
         FileConfiguration users = plugin.getUsers();
         if(event.getEntity() instanceof Player){
+
             Player jugador = (Player) event.getEntity();
+            if(plugin.getUsersLogeados().contains(jugador.getName())){
+                return;
+            }
             Boolean logeado = users.getBoolean("usuarios."+jugador.getName()+".logeado");
             if(!logeado){
                 event.setCancelled(true);
@@ -117,6 +144,9 @@ public class CheckSiEstaLogeado implements Listener {
         FileConfiguration users = plugin.getUsers();
         if(event.getEntity() instanceof Player){
             Player jugador = (Player) event.getEntity();
+            if(plugin.getUsersLogeados().contains(jugador.getName())){
+                return;
+            }
             Boolean logeado = users.getBoolean("usuarios."+jugador.getName()+".logeado");
             if(!logeado){
                 event.setCancelled(true);

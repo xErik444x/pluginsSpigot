@@ -2,6 +2,7 @@ package me.erik444.loginv1.comandos;
 
 import me.erik444.loginv1.loginv1;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -101,18 +102,22 @@ public class login implements CommandExecutor {
                         break;
                     default:
 
-                            player.sendMessage(plugin.nombre+" Utiliza /login change NombreDeUsuario nuevaContraseña. Para cambiar la pass del user");
-                            player.sendMessage(plugin.nombre+" Utiliza /login view NombreDeUsuario. Para ver la pass del user");
-                            player.sendMessage(plugin.nombre+" Utiliza /login delete NombreDeUsuario. Para eliminar la pass del user");
+                        player.sendMessage(plugin.nombre + ChatColor.BLUE+"---------------"+ChatColor.GOLD+" Login "+ChatColor.BLUE+"---------------");
+                        player.sendMessage(ChatColor.GOLD+ "- /login change"+ChatColor.RED+" {Nick} nuevaContraseña"+ChatColor.LIGHT_PURPLE+"-> Cambiar la pass del user");
+                        player.sendMessage(ChatColor.GOLD+ "- /login view"+ChatColor.RED+" {Nick} "+ChatColor.LIGHT_PURPLE+"-> Ver la pass del user");
+                        player.sendMessage(ChatColor.GOLD+ "- /login delete"+ChatColor.RED+" {Nick} "+ChatColor.LIGHT_PURPLE+"-> Eliminar la pass del user");
+                        player.sendMessage(plugin.nombre + ChatColor.BLUE+"-----"+ChatColor.GREEN+"Version: "+plugin.version+ChatColor.BLUE+" By Erik444_-----");
 
                         break;
 
                 }
 
             }else{
-                player.sendMessage(plugin.nombre+" Utiliza /login change NombreDeUsuario nuevaContraseña. Para cambiar la pass del user");
-                player.sendMessage(plugin.nombre+" Utiliza /login view NombreDeUsuario. Para ver la pass del user");
-                player.sendMessage(plugin.nombre+" Utiliza /login delete NombreDeUsuario. Para eliminar la pass del user");
+                player.sendMessage(plugin.nombre + ChatColor.BLUE+"---------------"+ChatColor.GOLD+" Login "+ChatColor.BLUE+"---------------");
+                player.sendMessage(ChatColor.GOLD+ "- /login change"+ChatColor.RED+" {Nick} nuevaContraseña"+ChatColor.LIGHT_PURPLE+"-> Cambiar la pass del user");
+                player.sendMessage(ChatColor.GOLD+ "- /login view"+ChatColor.RED+" {Nick} "+ChatColor.LIGHT_PURPLE+"-> Ver la pass del user");
+                player.sendMessage(ChatColor.GOLD+ "- /login delete"+ChatColor.RED+" {Nick} "+ChatColor.LIGHT_PURPLE+"-> Eliminar la pass del user");
+                player.sendMessage(plugin.nombre + ChatColor.BLUE+"-----"+ChatColor.GREEN+"Version: "+plugin.version+ChatColor.BLUE+" By Erik444_-----");
                 return false;
             }
         }
@@ -184,17 +189,23 @@ public class login implements CommandExecutor {
                            break;
                        default:
 
-                               Bukkit.getConsoleSender().sendMessage(plugin.nombre+" Utiliza /login change NombreDeUsuario nuevaContraseña. Para cambiar la pass del user");
-                               Bukkit.getConsoleSender().sendMessage(plugin.nombre+" Utiliza /login view NombreDeUsuario. Para ver la pass del user");
+                           Bukkit.getConsoleSender().sendMessage(plugin.nombre + ChatColor.BLUE+"---------------"+ChatColor.GOLD+" Login "+ChatColor.BLUE+"---------------");
+                           Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD+ "- /login change"+ChatColor.RED+" {Nick} nuevaContraseña"+ChatColor.LIGHT_PURPLE+"-> Cambiar la pass del user");
+                           Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD+ "- /login view"+ChatColor.RED+" {Nick} "+ChatColor.LIGHT_PURPLE+"-> Ver la pass del user");
+                           Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD+ "- /login delete"+ChatColor.RED+" {Nick} "+ChatColor.LIGHT_PURPLE+"-> Eliminar la pass del user");
+                           Bukkit.getConsoleSender().sendMessage(plugin.nombre + ChatColor.BLUE+"-----"+ChatColor.GREEN+"Version: "+plugin.version+ChatColor.BLUE+" By Erik444_-----");
 
 
                            break;
 
                    }
                }else{
-                   Bukkit.getConsoleSender().sendMessage(plugin.nombre+" Utiliza /login change NombreDeUsuario nuevaContraseña. Para cambiar la pass del user");
-                   Bukkit.getConsoleSender().sendMessage(plugin.nombre+" Utiliza /login view NombreDeUsuario. Para ver la pass del user");
-                   Bukkit.getConsoleSender().sendMessage(plugin.nombre+" Utiliza /login delete NombreDeUsuario. Para eliminar la pass del user");
+                   Bukkit.getConsoleSender().sendMessage(plugin.nombre + ChatColor.BLUE+"---------------"+ChatColor.GOLD+" Login "+ChatColor.BLUE+"---------------");
+                   Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD+ "- /login change"+ChatColor.RED+" {Nick} nuevaContraseña"+ChatColor.LIGHT_PURPLE+"-> Cambiar la pass del user");
+                   Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD+ "- /login view"+ChatColor.RED+" {Nick} "+ChatColor.LIGHT_PURPLE+"-> Ver la pass del user");
+                   Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD+ "- /login delete"+ChatColor.RED+" {Nick} "+ChatColor.LIGHT_PURPLE+"-> Eliminar la pass del user");
+                   Bukkit.getConsoleSender().sendMessage(plugin.nombre + ChatColor.BLUE+"-----"+ChatColor.GREEN+"Version: "+plugin.version+ChatColor.BLUE+" By Erik444_-----");
+
                }
            }
 
