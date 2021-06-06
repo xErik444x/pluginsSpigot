@@ -1,0 +1,7 @@
+name: Whitelist
+main: me.Erik444.whitelist.main
+version: 1.0.1
+api-version: 1.16
+commands:
+  whitelist:
+    description: Maneja la whitelist.

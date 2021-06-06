@@ -1,10 +1,12 @@
 package me.erik444.loginv1;
 
+import com.mysql.fabric.xmlrpc.base.Array;
 import me.erik444.loginv1.comandos.login;
 import me.erik444.loginv1.eventos.CheckSiEstaLogeado;
 import me.erik444.loginv1.eventos.Entrar;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -12,6 +14,10 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 public class loginv1 extends JavaPlugin {
     public String rutaConfig;
@@ -34,11 +40,29 @@ public class loginv1 extends JavaPlugin {
         registrarEventos();
         //registrarConfig();
         registerUsers();
-
+        reloadUsers();
+//        restartUsersSesions();
     }
     @Override
     public void onDisable() {
         Bukkit.getConsoleSender().sendMessage(nombre + "ha sido desactivado. ");
+        reloadUsers();
+        List<String> list = new ArrayList<>(users.getConfigurationSection("usuarios").getKeys(false));
+        for (int i = 0; i < list.size() ; i++) {
+            // list.get(i) es el nombre de usuario
+            // System.out.println(list.get(i)+": "+users.get("usuarios."+list.get(i)+".ip"));
+            users.set("usuarios."+list.get(i)+".ip","0.0.0.0");
+           // System.out.println("ip establecida a: 0.0.0.0");
+        }
+        saveUsers();
+        getLogger().info(nombre+" Ip de usuarios reestablecidas a 0.0.0.0");
+        //        Get names of yml
+//        List<String> list = new ArrayList<>(users.getConfigurationSection("usuarios").getKeys(false));
+//        for (int i = 0; i < list.size() ; i++) {
+//            System.out.println(list.get(i)+": "+users.get("usuarios."+list.get(i)));
+//            System.out.println(list.get(i)+": "+users.get("usuarios."+list.get(i)+".ip"));
+//            users.set("usuarios."+list.get(i),"0.0.0.0");
+//        }
     }
 
     private void registrarComandos(){
@@ -90,6 +114,12 @@ public class loginv1 extends JavaPlugin {
             getLogger().info("Error al generar archivo");
             getLogger().info(ex.toString());
         }
+////        Get names of yml
+
+
+//        users.getConfigurationSection("usuarios").getKeys(true).forEach(s -> {
+//            System.out.println(users.getString("usuarios."+s+"ip"));
+//        });
     }
 
     public void saveUsers(){
@@ -109,6 +139,19 @@ public class loginv1 extends JavaPlugin {
         }
     }
 
+//    public void restartUsersSesions(){
+//        FileConfiguration users1 = this.getUsers();
+//        System.out.println(users.getConfigurationSection("usuarios.Erik444_"));
+
+
+
+//        System.out.println(usuarios.getClass());
+//        List<String> users1 = new ArrayList<String>();
+//        users1 = users.getStringList("usuarios");
+//        for (int i = 0; i <  ; i++) {
+//
+//        }
+//    }
 
 
 

@@ -1,3 +1,5 @@
 usuarios:
   Erik444_:
-    pass: Risoerik1
+    pass: test4444_
+    logeado: true
+    ip: 0.0.0.0

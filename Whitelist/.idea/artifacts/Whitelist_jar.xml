@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Whitelist:jar">
+    <output-path>$USER_HOME$/Desktop/Server de pruebas/plugins</output-path>
+    <root id="archive" name="Whitelist.jar">
+      <element id="module-output" name="Whitelist" />
+    </root>
+  </artifact>
+</component>

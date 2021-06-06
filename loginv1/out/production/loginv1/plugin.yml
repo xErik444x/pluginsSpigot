@@ -1,6 +1,6 @@
 name: loginv1
 main: me.erik444.loginv1.loginv1
-version: 1.0.1
+version: 1.5.0
 commands:
   login:
     description: logea al usuario.

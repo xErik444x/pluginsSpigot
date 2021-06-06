@@ -1,23 +1,16 @@
 package me.erik444.loginv1.eventos;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import me.erik444.loginv1.loginv1;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.plugin.Plugin;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Supplier;
-import java.util.logging.Logger;
 
 import static org.bukkit.Bukkit.getLogger;
 
@@ -52,17 +45,23 @@ public class Entrar implements Listener {
             getLogger().info(ipP);
             if(ipP == null) {
                 jugador.sendMessage(plugin.nombre + ChatColor.RED + "Ingresa una contraseña: (debe ir toda junta, sin espacios)");
+            }else{
+                jugador.sendMessage(plugin.nombre + ChatColor.RED + "Ingresa tu contraseña:");
+
             }
 
             Bukkit.getConsoleSender().sendMessage("57");
             String list = users.getString("usuarios."+jugador.getName()+".pass");
             String ip = users.getString("usuarios."+jugador.getName()+".ip");
-            if(ip != null && !ip.isEmpty()){
+            if(ip != null && !ip.isEmpty() && !ip.equals("0.0.0.0")){
                 if(jugador.getAddress().getAddress().toString().equals(ip)){
                     users.set("usuarios."+jugador.getName()+".logeado",true);
                     plugin.saveUsers();
                     plugin.reloadUsers();
                     users = plugin.getUsers();
+                    if(jugador.getGameMode().equals(GameMode.SURVIVAL)){
+                        jugador.setAllowFlight(false);
+                    }
                     jugador.sendMessage(ChatColor.RED + "AUTOLOGEADO, NO HACE FALTA QUE PONGAS TU CONTRASEÑA.");
                 }else{
                     Bukkit.getConsoleSender().sendMessage(plugin.nombre+  ChatColor.RED +" ALERTA "+ jugador.getName() +" Entró con otra ip: "+ jugador.getAddress().getAddress().toString());
@@ -81,19 +80,21 @@ public class Entrar implements Listener {
     @EventHandler
     public void ponerPass(AsyncPlayerChatEvent event){
         try {
-            Bukkit.getConsoleSender().sendMessage("ejecutao");
+            //Bukkit.getConsoleSender().sendMessage("ejecutao");
             FileConfiguration users = plugin.getUsers();
-            Bukkit.getConsoleSender().sendMessage("84");
+            //Bukkit.getConsoleSender().sendMessage("84");
             Player jugador = event.getPlayer();
             String passchat = event.getMessage();
-            Bukkit.getConsoleSender().sendMessage("87");
+            //Bukkit.getConsoleSender().sendMessage("87");
             String contraseña = users.getString("usuarios."+jugador.getName()+".pass");
-            Bukkit.getConsoleSender().sendMessage("89");
+            //Bukkit.getConsoleSender().sendMessage("89");
             Boolean logeado = users.getBoolean("usuarios."+jugador.getName()+".logeado");
-            Bukkit.getConsoleSender().sendMessage("91");
+            //Bukkit.getConsoleSender().sendMessage("91");
             if(!logeado){
                     if(contraseña == null){
-                        jugador.setAllowFlight(false);
+                        if(jugador.getGameMode().equals(GameMode.SURVIVAL)){
+                            jugador.setAllowFlight(false);
+                        }
                         event.setCancelled(true);
                         jugador.sendMessage(ChatColor.BLUE + "Logeado Correctamente!");
                         users.set("usuarios."+jugador.getName()+".pass",passchat);
@@ -101,10 +102,12 @@ public class Entrar implements Listener {
                         users.set("usuarios."+jugador.getName()+".ip",jugador.getAddress().getAddress().toString());
                         plugin.saveUsers();
                     }else{
-                        Bukkit.getConsoleSender().sendMessage("103");
+                        //Bukkit.getConsoleSender().sendMessage("103");
                         if(passchat.equals(contraseña)){
-                            Bukkit.getConsoleSender().sendMessage("105");
-                            jugador.setAllowFlight(false);
+                            //Bukkit.getConsoleSender().sendMessage("105");
+                            if(jugador.getGameMode().equals(GameMode.SURVIVAL)){
+                                jugador.setAllowFlight(false);
+                            }
                             event.setCancelled(true);
                             jugador.sendMessage(ChatColor.BLUE + "Logeado Correctamente!");
                             users.set("usuarios."+jugador.getName()+".logeado",true);
@@ -112,7 +115,7 @@ public class Entrar implements Listener {
                             plugin.saveUsers();
 
                         }else{
-                            Bukkit.getConsoleSender().sendMessage("114");
+                            //Bukkit.getConsoleSender().sendMessage("114");
                             event.setCancelled(true);
                             jugador.sendMessage(ChatColor.RED + "CONTRASEÑA INCORRECTA!");
 
@@ -120,9 +123,9 @@ public class Entrar implements Listener {
                     }
 
             }else{
-                Bukkit.getConsoleSender().sendMessage("121");
+                //Bukkit.getConsoleSender().sendMessage("121");
                 if(passchat.equalsIgnoreCase(contraseña)){
-                    Bukkit.getConsoleSender().sendMessage("123");
+                    //Bukkit.getConsoleSender().sendMessage("123");
                     event.setCancelled(true);
                     jugador.sendMessage(plugin.nombre+ ChatColor.RED + " Ya estabas logeado, tu contraseña no se mandará al chat.");
 
